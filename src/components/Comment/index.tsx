@@ -1,0 +1,69 @@
+import { ThumbsUp, Trash } from "phosphor-react";
+import { useState } from "react";
+
+import user1 from "../../assets/user-1.svg";
+import { Avatar } from "../Avatar";
+import { Container } from "./style";
+
+interface ICONTEUDOPROPS {
+  content: string;
+  deleteComment: (comment: string) => void;
+}
+
+export function Comment({ content, deleteComment }: ICONTEUDOPROPS) {
+  const [isliked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
+
+  function handleLike() {
+    const clickedButton = event.target as HTMLButtonElement;
+    setIsLiked(!isliked);
+
+    if (!isliked) {
+      setLikes(likes + 1);
+      clickedButton.classList.toggle("liked");
+    } else {
+      setLikes(likes - 1);
+      clickedButton.classList.toggle("liked");
+    }
+  }
+
+  function handleDeleteComment() {
+    deleteComment(content);
+  }
+
+  return (
+    <Container>
+      <Avatar hasBorder={false} src={user1} />
+
+      <div className="commentBox">
+        <div className="commentContent">
+          <header>
+            <div className="authorAndTime">
+              <strong>Cassia</strong>
+              <time title="04 de Junho ás 10:32" dateTime="2022-06-04 10:32:40">
+                Cerca de 1h atrás
+              </time>
+            </div>
+
+            <button
+              onClick={handleDeleteComment}
+              title="Deletar comentário"
+              type="button"
+            >
+              <Trash size={24} />
+            </button>
+          </header>
+          <p>{content}</p>
+        </div>
+
+        <footer>
+          <button type="button" onClick={handleLike}>
+            <ThumbsUp />
+            Aplaudir
+            <span>{likes}</span>
+          </button>
+        </footer>
+      </div>
+    </Container>
+  );
+}

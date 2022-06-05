@@ -1,0 +1,15 @@
+  const [teste, setTeste] = useState([{}]);
+  const [teste2, setTeste2] = useState(0);
+
+  function Teste() {
+    setTeste2(teste2 + 1);
+    setTeste([
+      ...teste,
+      {
+        author: "oi",
+        content: "tudo",
+        publishedAt: teste2,
+      },
+    ]);
+    console.log(teste);
+  }
