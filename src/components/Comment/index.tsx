@@ -14,7 +14,7 @@ export function Comment({ content, deleteComment }: ICONTEUDOPROPS) {
   const [isliked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(0);
 
-  function handleLike() {
+  function handleLike(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const clickedButton = event.target as HTMLButtonElement;
     setIsLiked(!isliked);
 

@@ -1,3 +1,7 @@
+/* eslint-disable import/no-duplicates */
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { format, formatDistanceToNow } from "date-fns";
@@ -14,9 +18,8 @@ interface IPOSTPROPS {
 
   publishedAt: Date;
 }
-
 interface ICONTENT {
-  type: "text" | "link";
+  type: string;
   content: string;
 }
 
@@ -27,7 +30,7 @@ interface IAUTHOR {
 }
 
 export function Post({ author, content, publishedAt }: IPOSTPROPS) {
-  const [comments, setComments] = useState<Array>([]);
+  const [comments, setComments] = useState([]) as any;
 
   const [newComment, setNewComment] = useState<string>("");
 
@@ -61,7 +64,7 @@ export function Post({ author, content, publishedAt }: IPOSTPROPS) {
 
   function deleteComment(comment: string) {
     // filter percorre todos os elementos do array e retorna um novo array sem o elemento que passamos como parametro
-    const commentsWithoutRemoved = comments.filter((c) => {
+    const commentsWithoutRemoved = comments.filter((c: string) => {
       return c !== comment;
     });
 
