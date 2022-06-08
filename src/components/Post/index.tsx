@@ -1,9 +1,3 @@
-/* eslint-disable import/no-duplicates */
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { format, formatDistanceToNow } from "date-fns";
 import ptBr from "date-fns/locale/pt-BR";
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
@@ -41,6 +35,11 @@ export function Post({ author, content, publishedAt }: IPOSTPROPS) {
   );
 
   const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBr,
+    addSuffix: true,
+  });
+
+  const publishedDateRelativeToNowComment = formatDistanceToNow(new Date(), {
     locale: ptBr,
     addSuffix: true,
   });
@@ -136,6 +135,9 @@ export function Post({ author, content, publishedAt }: IPOSTPROPS) {
               key={comment}
               content={comment}
               deleteComment={deleteComment}
+              publishedDateRelativeToNowComment={
+                publishedDateRelativeToNowComment
+              }
             />
           );
         })}
