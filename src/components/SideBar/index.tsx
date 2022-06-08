@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { PencilLine } from "phosphor-react";
 
 import capa from "../../assets/capa.svg";
