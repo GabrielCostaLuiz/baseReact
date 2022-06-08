@@ -8,9 +8,14 @@ import { Container } from "./style";
 interface ICONTEUDOPROPS {
   content: string;
   deleteComment: (comment: string) => void;
+  publishedDateRelativeToNowComment: string;
 }
 
-export function Comment({ content, deleteComment }: ICONTEUDOPROPS) {
+export function Comment({
+  content,
+  deleteComment,
+  publishedDateRelativeToNowComment,
+}: ICONTEUDOPROPS) {
   const [isliked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(0);
 
@@ -40,8 +45,11 @@ export function Comment({ content, deleteComment }: ICONTEUDOPROPS) {
           <header>
             <div className="authorAndTime">
               <strong>Cassia</strong>
-              <time title="04 de Junho ás 10:32" dateTime="2022-06-04 10:32:40">
-                Cerca de 1h atrás
+              <time
+                title={publishedDateRelativeToNowComment}
+                dateTime="2022-06-04 10:32:40"
+              >
+                {publishedDateRelativeToNowComment}
               </time>
             </div>
 
